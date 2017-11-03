@@ -63,7 +63,7 @@ public class SpringGemFireServerApplication {
 	@Bean
 	Properties gemfireProperties(
 		  @Value("${gemfire.log.level:config}") String logLevel,
-		  @Value("${gemfire.locator.host-port:localhost[10334]}") String locatorHostPort,
+		  @Value("${gemfire.locator.host-port:192.168.26.100[10335]}") String locatorHostPort,
 		  @Value("${gemfire.manager.port:1099}") String managerPort) {
 
 		Properties gemfireProperties = new Properties();
@@ -91,9 +91,9 @@ public class SpringGemFireServerApplication {
 
 	@Bean
 	CacheServerFactoryBean gemfireCacheServer(Cache gemfireCache,
-			@Value("${gemfire.cache.server.bind-address:localhost}") String bindAddress,
-			@Value("${gemfire.cache.server.hostname-for-clients:localhost}") String hostNameForClients,
-			@Value("${gemfire.cache.server.port:40404}") int port) {
+			@Value("${gemfire.cache.server.bind-address:192.168.26.100}") String bindAddress,
+			@Value("${gemfire.cache.server.hostname-for-clients:192.168.26.100}") String hostNameForClients,
+			@Value("${gemfire.cache.server.port:40405}") int port) {
 
 		CacheServerFactoryBean gemfireCacheServer = new CacheServerFactoryBean();
 
@@ -126,7 +126,7 @@ public class SpringGemFireServerApplication {
 	RegionAttributesFactoryBean factorialsRegionAttributes() {
 		RegionAttributesFactoryBean factorialsRegionAttributes = new RegionAttributesFactoryBean();
 
-		factorialsRegionAttributes.setCacheLoader(factorialsCacheLoader());
+//		factorialsRegionAttributes.setCacheLoader(factorialsCacheLoader());
 		factorialsRegionAttributes.setKeyConstraint(Long.class);
 		factorialsRegionAttributes.setValueConstraint(Long.class);
 
