@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.smalik</groupId>
-    <artifactId>sample-gemfire</artifactId>
+    <artifactId>gemfire-client-region</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -15,8 +15,14 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-shell.version>1.0.0.RELEASE</spring-shell.version>
     </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
 
     <dependencies>
         <dependency>
@@ -31,18 +37,6 @@
                 <exclusion>
                     <groupId>com.gemstone.gemfire</groupId>
                     <artifactId>gemfire</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.shell</groupId>
-            <artifactId>spring-shell</artifactId>
-            <version>${spring-shell.version}</version>
-            <scope>runtime</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>net.sourceforge.jline</groupId>
-                    <artifactId>jline</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

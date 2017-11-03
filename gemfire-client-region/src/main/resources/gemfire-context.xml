@@ -7,13 +7,13 @@
 
 
     <gfe:pool id="my-pool" subscription-enabled="true">
-        <gfe:locator host="192.168.26.100" port="10335"/>
+        <gfe:locator host="localhost" port="10334"/>
     </gfe:pool>
 
     <gfe:client-cache id="my-cache" pool-name="my-pool"/>
 
     <gfe:client-region id="my-region"
-                       name="Factorials"
+                       name="generic-cache"
                        pool-name="my-pool"
                        cache-ref="my-cache"
                        />

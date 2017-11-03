@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 public class GemfireConfiguration {
 
     @Bean
-    public Region<Long, Long> region(@Qualifier("my-region") Region localRegion) {
+    public Region<String, String> region(@Qualifier("my-region") Region localRegion) {
         return localRegion;
     }
 }

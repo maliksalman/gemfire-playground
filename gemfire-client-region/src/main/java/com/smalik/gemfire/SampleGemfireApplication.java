@@ -24,20 +24,23 @@ public class SampleGemfireApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-    private Region<Long, Long> region;
+    private Region<String, String> region;
 
     @Override
     public void run(String... args) throws Exception {
 
-        Long val = region.get(4l);
-        if (val != null) {
+        String magicKey = "magic-key";
+        String magicValue = "24";
 
-            logger.info("*** FOUND: value=" + val);
+        String cachedValue = region.get(magicKey);
+        if (cachedValue != null) {
+
+            logger.info("*** FOUND: key=" + magicKey +  ", value=" + cachedValue);
 
         } else {
 
-            region.put(4l, 24l);
-            logger.info("*** ADDED: key=4, value=24");
+            region.put(magicKey, magicValue);
+            logger.info("*** ADDED: key=" + magicKey + ", value=" + magicValue);
         }
     }
 }
