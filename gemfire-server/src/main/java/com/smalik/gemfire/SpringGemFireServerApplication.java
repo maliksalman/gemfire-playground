@@ -28,11 +28,12 @@ import org.springframework.data.gemfire.CacheFactoryBean;
 import org.springframework.data.gemfire.PartitionedRegionFactoryBean;
 import org.springframework.data.gemfire.RegionAttributesFactoryBean;
 import org.springframework.data.gemfire.server.CacheServerFactoryBean;
+import org.springframework.session.data.gemfire.config.annotation.web.http.EnableGemFireHttpSession;
 
 import java.util.Properties;
 
 @SpringBootApplication
-@SuppressWarnings("unused")
+@EnableGemFireHttpSession(regionName = "session-cache")
 public class SpringGemFireServerApplication {
 
 	public static void main(String[] args) {
@@ -104,6 +105,7 @@ public class SpringGemFireServerApplication {
 
 		return factorialsRegion;
 	}
+
 
 	@Bean
 	@SuppressWarnings("unchecked")
