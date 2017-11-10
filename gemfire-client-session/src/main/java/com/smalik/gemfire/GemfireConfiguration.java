@@ -30,8 +30,8 @@ public class GemfireConfiguration {
 
     @Bean
     PoolFactoryBean gemfirePool(
-            @Value("${gemfire.cache.server.host:localhost}") String host,
-            @Value("${gemfire.cache.server.port:10334}") int port) {
+            @Value("${gemfire.locator.host:localhost}") String host,
+            @Value("${gemfire.locator.port:10334}") int port) {
 
         PoolFactoryBean gemfirePool = new PoolFactoryBean();
 
