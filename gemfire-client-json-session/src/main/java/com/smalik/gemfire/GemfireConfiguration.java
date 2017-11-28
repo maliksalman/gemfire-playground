@@ -24,14 +24,14 @@ public class GemfireConfiguration {
 
     @Bean
     public ClientCacheFactoryBean gemfireCache() {
-        ClientCacheFactoryBean gemfireCache = new ClientCacheFactoryBean();
-        gemfireCache.setClose(true);
 
         Properties gemfireProperties = new Properties();
-        gemfireProperties.setProperty("name", "gemfire-client-session");
+        gemfireProperties.setProperty("name", "gemfire-client-json-session");
         gemfireProperties.setProperty("log-level", "warning");
-        gemfireCache.setProperties(gemfireProperties);
 
+        ClientCacheFactoryBean gemfireCache = new ClientCacheFactoryBean();
+        gemfireCache.setClose(true);
+        gemfireCache.setProperties(gemfireProperties);
         return gemfireCache;
     }
 
@@ -41,7 +41,6 @@ public class GemfireConfiguration {
             @Value("${gemfire.locator.port:10334}") int port) {
 
         PoolFactoryBean gemfirePool = new PoolFactoryBean();
-
         gemfirePool.setKeepAlive(false);
         gemfirePool.setPingInterval(TimeUnit.SECONDS.toMillis(5));
         gemfirePool.setReadTimeout(Long.valueOf(TimeUnit.SECONDS.toMillis(15)).intValue());
@@ -54,9 +53,13 @@ public class GemfireConfiguration {
     }
 
     @Bean
-    public ClientRegionFactoryBean<String, String> clientRegion(GemFireCache cache, Pool pool) {
+    public ClientRegionFactoryBean<String, String> clientRegion(
+            GemFireCache cache,
+            Pool pool,
+            @Value("${gemfire.region.name:generic-cache}") String regionName) {
+
         ClientRegionFactoryBean<String, String> region = new ClientRegionFactoryBean<>();
-        region.setRegionName("generic-cache");
+        region.setRegionName(regionName);
         region.setPool(pool);
         region.setCache(cache);
         return region;
