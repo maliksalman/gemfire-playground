@@ -17,14 +17,14 @@ public class GemfireConfiguration {
 
     @Bean
     ClientCacheFactoryBean gemfireCache() {
-        ClientCacheFactoryBean gemfireCache = new ClientCacheFactoryBean();
-        gemfireCache.setClose(true);
 
         Properties gemfireProperties = new Properties();
         gemfireProperties.setProperty("name", "gemfire-client-session");
         gemfireProperties.setProperty("log-level", "warning");
-        gemfireCache.setProperties(gemfireProperties);
 
+        ClientCacheFactoryBean gemfireCache = new ClientCacheFactoryBean();
+        gemfireCache.setClose(true);
+        gemfireCache.setProperties(gemfireProperties);
         return gemfireCache;
     }
 
@@ -34,7 +34,6 @@ public class GemfireConfiguration {
             @Value("${gemfire.locator.port:10334}") int port) {
 
         PoolFactoryBean gemfirePool = new PoolFactoryBean();
-
         gemfirePool.setKeepAlive(false);
         gemfirePool.setPingInterval(TimeUnit.SECONDS.toMillis(5));
         gemfirePool.setReadTimeout(Long.valueOf(TimeUnit.SECONDS.toMillis(15)).intValue());
@@ -42,7 +41,6 @@ public class GemfireConfiguration {
         gemfirePool.setSubscriptionEnabled(true);
         gemfirePool.setThreadLocalConnections(false);
         gemfirePool.setLocators(new ConnectionEndpoint[] { new ConnectionEndpoint(host, port) });
-
         return gemfirePool;
     }
 }
